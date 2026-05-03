@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["student", "hod", "guard"],
     default: "student"
-  }
+  },
+  rollNumber: {
+  type: String,
+  required: true,
+  unique: true
+}
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);

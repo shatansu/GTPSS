@@ -7,9 +7,14 @@ const {
   updatePassStatus
 } = require("../controllers/gatePassController");
 
-// Routes
-router.post("/apply", applyPass);
-router.get("/all", getAllPasses);
-router.put("/update/:id", updatePassStatus);
+const auth = require("../middleware/authMiddleware");
+const roleCheck = require("../middleware/roleMiddleware");
+
+// Student apply
+router.post("/apply", auth, roleCheck("student"), applyPass);
+
+// HOD actions
+router.get("/all", auth, roleCheck("hod"), getAllPasses);
+router.put("/update/:id", auth, roleCheck("hod"), updatePassStatus);
 
 module.exports = router;

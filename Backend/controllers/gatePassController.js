@@ -6,7 +6,7 @@ exports.applyPass = async (req, res) => {
     const { reason, outTime, inTime } = req.body;
 
     const pass = new GatePass({
-     student: "69e5f707da7ef72923d255c2", // baad me auth middleware se aayega
+     student: req.user.id, // baad me auth middleware se aayega
       reason,
       outTime,
       inTime
